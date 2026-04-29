@@ -60,6 +60,7 @@ jobs:
 
       - name: Build with Maven
         run: |
+          ls -al
           mvn clean package -DskipTests \
             --settings ./shared-workflows/.github/settings.xml \
             -Dcodeartifact.token=${{ steps.codeartifact-token.outputs.token }}
