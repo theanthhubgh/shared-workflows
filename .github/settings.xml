@@ -21,7 +21,7 @@
         </server>
     </servers>
 
-    <mirrors>
+    <!-- <mirrors> -->
         <!-- Mirror for Snapshot Repository -->
         <!-- <mirror>
             <id>central</id>
