@@ -13,8 +13,8 @@ on:
         required: true
       AWS_ROLE_TO_ASSUME:
         required: true
-      MY_ANTH_PAT:
-        required: false
+      # MY_ANTH_PAT:
+      #   required: false
 
 jobs:
   build-and-deploy:
@@ -26,9 +26,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Configure Git for Private Modules
-        run: |
-          git config --global url."https://${{ secrets.MY_ANTH_PAT }}@github.com/".insteadOf "https://github.com/"  
+      # - name: Configure Git for Private Modules
+      #   run: |
+      #     git config --global url."https://${{ secrets.MY_ANTH_PAT }}@github.com/".insteadOf "https://github.com/"  
 
       - name: Set up JDK 21
         uses: actions/setup-java@v3
@@ -43,10 +43,18 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
           aws-region: ${{ secrets.AWS_REGION }}
 
+      - name: Get CodeArtifact Token
+        id: codeartifact-token
+        run: |
+          TOKEN=$(aws codeartifact get-authorization-token --domain anth-dev --domain-owner ${{ vars.AWS_ACCOUNT_ID }} --query authorizationToken --output text)
+          echo "::add-mask::$TOKEN"
+          echo "token=$TOKEN" >> $GITHUB_OUTPUT
+
       - name: Build with Maven
         run: |
-          aws sts get-caller-identity
-          mvn clean package -DskipTests
+          mvn clean package -DskipTests \
+            --settings ./shared-workflows/.github/settings.xml \
+            -Dcodeartifact.token=${{ steps.codeartifact-token.outputs.token }}
 
       - name: Run Tests
         run: mvn test    
