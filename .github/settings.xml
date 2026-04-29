@@ -23,21 +23,21 @@
 
     <mirrors>
         <!-- Mirror for Snapshot Repository -->
-        <mirror>
+        <!-- <mirror>
             <id>central</id>
             <mirrorOf>external:*</mirrorOf>
             <url>https://anth-dev-972171432811.d.codeartifact.eu-west-1.amazonaws.com/maven/scf-dep-release</url>
             <blocked>false</blocked>
-        </mirror>
+        </mirror> -->
 
         <!-- Mirror for Release Repository -->
-        <mirror>
+        <!-- <mirror>
             <id>snapshots</id>
             <mirrorOf>external:*</mirrorOf>
             <url>https://anth-dev-972171432811.d.codeartifact.eu-west-1.amazonaws.com/maven/scf-dep-snapshots</url>
             <blocked>false</blocked>
         </mirror>
-    </mirrors>
+    </mirrors> -->
 
     <profiles>
         <profile>
@@ -46,6 +46,8 @@
                 <repository>
                     <id>snapshots</id>
                     <url>https://anth-dev-972171432811.d.codeartifact.eu-west-1.amazonaws.com/maven/scf-dep-snapshots</url>
+                    <releases><enabled>true</enabled></releases>
+                    <snapshots><enabled>true</enabled></snapshots>
                 </repository>
             </repositories>
         </profile>
@@ -56,6 +58,8 @@
                 <repository>
                     <id>central</id>
                     <url>https://anth-dev-972171432811.d.codeartifact.eu-west-1.amazonaws.com/maven/scf-dep-release</url>
+                    <releases><enabled>false</enabled></releases>
+                    <snapshots><enabled>true</enabled></snapshots>
                 </repository>
             </repositories>
         </profile>
