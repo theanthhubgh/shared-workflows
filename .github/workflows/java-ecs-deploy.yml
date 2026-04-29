@@ -23,8 +23,16 @@ jobs:
       id-token: write   # This allows requesting the JWT from GitHub
       contents: read    # This is required for actions/checkout
     steps:
-      - name: Checkout Code
+      # 1. Checkout the Application (auth-service)
+      - name: Checkout App Code
         uses: actions/checkout@v4
+
+      # 2. Checkout the Shared Repository (to get settings.xml)
+      - name: Checkout Shared Resources
+        uses: actions/checkout@v4
+        with:
+          repository: theanthhubgh/shared-workflows
+          path: shared-workflows
 
       # - name: Configure Git for Private Modules
       #   run: |
