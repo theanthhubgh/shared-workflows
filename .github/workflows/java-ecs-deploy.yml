@@ -60,9 +60,9 @@ jobs:
 
       - name: Build with Maven
         run: |
-          ls -al
+          ls shared-workflows/.github -al
           mvn clean package -DskipTests \
-            --settings ${{ github.workspace }}/shared-workflows/.github/settings.xml \
+            --settings shared-workflows/.github/settings.xml \
             -Dcodeartifact.token=${{ steps.codeartifact-token.outputs.token }}
 
       - name: Run Tests
