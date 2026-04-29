@@ -35,7 +35,9 @@ jobs:
           cache: 'maven'
 
       - name: Build with Maven
-        run: mvn clean package -DskipTests
+        run: |
+          aws sts get-caller-identity
+          mvn clean package -DskipTests
 
       - name: Run Tests
         run: mvn test
