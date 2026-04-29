@@ -62,7 +62,7 @@ jobs:
         run: |
           ls -al
           mvn clean package -DskipTests \
-            --settings ./shared-workflows/.github/settings.xml \
+            --settings ${{ github.workspace }}/shared-workflows/.github/settings.xml \
             -Dcodeartifact.token=${{ steps.codeartifact-token.outputs.token }}
 
       - name: Run Tests
