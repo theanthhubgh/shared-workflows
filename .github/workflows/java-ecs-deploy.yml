@@ -13,6 +13,8 @@ on:
         required: true
       AWS_ROLE_TO_ASSUME:
         required: true
+      MY_ANTH_PAT:
+        required: false
 
 jobs:
   build-and-deploy:
