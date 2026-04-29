@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                              http://maven.apache.org/xsd/settings-1.0.xsd">
+
+
+    <servers>
+        <!-- Authentication for Release Repository -->
+        <server>
+            <id>central</id>
+            <username>aws</username>
+            <password>${codeartifact.token}</password>
+        </server>
+
+        <!-- Authentication for Snapshot Repository -->
+        <server>
+            <id>snapshots</id>
+            <username>aws</username>
+            <password>${codeartifact.token}</password>
+        </server>
+    </servers>
+
+    <mirrors>
+        <!-- Mirror for Snapshot Repository -->
+        <mirror>
+            <id>central</id>
+            <mirrorOf>external:*</mirrorOf>
+            <url>https://anth-dev-972171432811.d.codeartifact.eu-west-1.amazonaws.com/maven/scf-dep-release</url>
+            <blocked>false</blocked>
+        </mirror>
+
+        <!-- Mirror for Release Repository -->
+        <mirror>
+            <id>snapshots</id>
+            <mirrorOf>external:*</mirrorOf>
+            <url>https://anth-dev-972171432811.d.codeartifact.eu-west-1.amazonaws.com/maven/scf-dep-snapshots</url>
+            <blocked>false</blocked>
+        </mirror>
+    </mirrors>
+
+    <profiles>
+        <profile>
+            <id>snapshot-profile</id>
+            <repositories>
+                <repository>
+                    <id>snapshots</id>
+                    <url>https://anth-dev-972171432811.d.codeartifact.eu-west-1.amazonaws.com/maven/scf-dep-snapshots</url>
+                </repository>
+            </repositories>
+        </profile>
+
+        <profile>
+            <id>release-profile</id>
+            <repositories>
+                <repository>
+                    <id>central</id>
+                    <url>https://anth-dev-972171432811.d.codeartifact.eu-west-1.amazonaws.com/maven/scf-dep-release</url>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+
+    <activeProfiles>
+        <!-- Activate profile based on version type -->
+        <activeProfile>snapshot-profile</activeProfile>
+    </activeProfiles>
+
+</settings>
