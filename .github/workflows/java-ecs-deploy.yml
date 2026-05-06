@@ -15,6 +15,9 @@ on:
         required: true
       # MY_ANTH_PAT:
       #   required: false
+env:
+  CONTAINER_NAME: auth-service
+  ECS_SERVICE: auth-service      
 
 jobs:
   build-and-deploy:
