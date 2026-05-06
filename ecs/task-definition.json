@@ -4,7 +4,7 @@
     "requiresCompatibilities": ["FARGATE"],
     "cpu": "512",
     "memory": "1024",
-    "executionRoleArn": "aarn:aws:iam::972171432811:role/ecsFullAccess",
+    "executionRoleArn": "arn:aws:iam::972171432811:role/ecsFullAccess",
     "taskRoleArn": "arn:aws:iam::972171432811:role/ecsFullAccess",
     "containerDefinitions": [
       {
