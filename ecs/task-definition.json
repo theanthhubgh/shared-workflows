@@ -35,7 +35,7 @@
           },
           {
             "name": "MYSQL_PASSWORD",
-            "valueFrom": "arn:aws:secretsmanager:region:account:secret:prod/docdb/url-xyz"
+            "valueFrom": "arn:aws:secretsmanager:eu-west-1:972171432811:secret:Dev-Environment-Secrets-de6dxV"
           }
         ]
       }
