@@ -4,8 +4,8 @@
     "requiresCompatibilities": ["FARGATE"],
     "cpu": "512",
     "memory": "1024",
-    "executionRoleArn": "arn:aws:iam::972171432811:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
-    "taskRoleArn": "arn:aws:iam::972171432811:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+    "executionRoleArn": "aarn:aws:iam::972171432811:role/ecsFullAccess",
+    "taskRoleArn": "arn:aws:iam::972171432811:role/ecsFullAccess",
     "containerDefinitions": [
       {
         "name": "app",
