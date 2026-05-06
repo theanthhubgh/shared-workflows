@@ -1,0 +1,43 @@
+{
+    "family": "auth-service", 
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": ["FARGATE"],
+    "cpu": "512",
+    "memory": "1024",
+    "executionRoleArn": "arn:aws:iam::972171432811:role/g-money-github-actions-role",
+    "taskRoleArn": "arn:aws:iam::972171432811:role/g-money-github-actions-role",
+    "containerDefinitions": [
+      {
+        "name": "app",
+        "image": "...",
+        "essential": true,
+        "portMappings": [
+          { "containerPort": 8080, "protocol": "tcp" }
+        ],
+        "environmentFiles": [
+            {
+                "value": "arn:aws:s3:::anth-dev-tf-backend/backend-services/dev.env",
+                "type": "s3"
+            }
+        ],
+        "secrets": [
+          {
+            "name": "MONGODB_USER",
+            "valueFrom": "arn:aws:secretsmanager:eu-west-1:972171432811:secret:Dev-Environment-Secrets-de6dxV"
+          },
+          {
+            "name": "MONGODB_PASSWORD",
+            "valueFrom": "arn:aws:secretsmanager:eu-west-1:972171432811:secret:Dev-Environment-Secrets-de6dxV"
+          },
+          {
+            "name": "AUTHENTICATION_SERVICE_DB",
+            "valueFrom": "arn:aws:secretsmanager:eu-west-1:972171432811:secret:Dev-Environment-Secrets-de6dxV"
+          },
+          {
+            "name": "MYSQL_PASSWORD",
+            "valueFrom": "arn:aws:secretsmanager:region:account:secret:prod/docdb/url-xyz"
+          }
+        ]
+      }
+    ]
+  }

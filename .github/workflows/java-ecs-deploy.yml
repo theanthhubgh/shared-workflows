@@ -88,3 +88,23 @@ jobs:
       #     service: ${{ inputs.service_name }}
       #     cluster: ${{ inputs.cluster_name }}
       #     image: ${{ steps.login-ecr.outputs.registry }}/${{ inputs.service_name }}:${{ github.sha }}
+
+      # 1. Update the 'image' field in the Task Definition JSON
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: shared-workflows/ecs/task-definition.json 
+          # Use a variable for the container name
+          container-name: ${{ env.CONTAINER_NAME }} 
+          image: ${{ steps.build-image.outputs.image }}
+
+      # 2. Deploy the updated Task Definition to ECS
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          # Use variables for service and cluster
+          service: ${{ env.ECS_SERVICE }}
+          cluster: dev-cluster
+          wait-for-service-stability: true
