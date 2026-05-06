@@ -4,8 +4,8 @@
     "requiresCompatibilities": ["FARGATE"],
     "cpu": "512",
     "memory": "1024",
-    "executionRoleArn": "arn:aws:iam::972171432811:role/ecsFullAccess",
-    "taskRoleArn": "arn:aws:iam::972171432811:role/ecsFullAccess",
+    "executionRoleArn": "arn:aws:iam::972171432811:role/g-money-github-actions-role",
+    "taskRoleArn": "arn:aws:iam::972171432811:role/g-money-github-actions-role",
     "containerDefinitions": [
       {
         "name": "app",
