@@ -37,7 +37,15 @@
             "name": "MYSQL_PASSWORD",
             "valueFrom": "arn:aws:secretsmanager:eu-west-1:972171432811:secret:Dev-Environment-Secrets-de6dxV"
           }
-        ]
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "/ecs/logs",
+                "awslogs-region": "eu-west-1",
+                "awslogs-stream-prefix": "ecs"
+            }
+        }
       }
     ]
   }
