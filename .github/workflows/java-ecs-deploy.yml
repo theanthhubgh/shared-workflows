@@ -93,7 +93,7 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: shared-workflows/ecs/task-definition.json 
+          task-definition: ecs/task-definition.json 
           # Use a variable for the container name
           container-name: "app"
           image: ${{ steps.login-ecr.outputs.registry }}/${{ inputs.service_name }}:${{ github.sha }}
