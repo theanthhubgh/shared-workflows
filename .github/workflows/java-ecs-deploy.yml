@@ -104,6 +104,6 @@ jobs:
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           # Use variables for service and cluster
-          service: ${{ inputs.service_name }}-service
+          service: ${{ inputs.service_name }}
           cluster: ${{ inputs.cluster_name }}
           wait-for-service-stability: true
