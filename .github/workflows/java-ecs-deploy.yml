@@ -95,7 +95,7 @@ jobs:
         with:
           task-definition: ecs/task-definition.json 
           # Use a variable for the container name
-          container-name: "app"
+          container-name: ${{ inputs.service_name }}
           image: ${{ steps.login-ecr.outputs.registry }}/${{ inputs.service_name }}:${{ github.sha }}
 
       # 2. Deploy the updated Task Definition to ECS
